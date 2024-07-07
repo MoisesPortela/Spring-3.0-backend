@@ -1,9 +1,6 @@
 package com.api.study.controller;
 
-import com.api.study.paciente.DadosCadastroPaciente;
-import com.api.study.paciente.DadosListagemPaciente;
-import com.api.study.paciente.Paciente;
-import com.api.study.paciente.PacienteRepository;
+import com.api.study.paciente.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +23,21 @@ public class PacienteController {
 
     @GetMapping
     public Page<DadosListagemPaciente> findAll(@PageableDefault(size = 10, sort = "nome") Pageable pageable){
-        return pacienteRepository.findAll(pageable).map(DadosListagemPaciente :: new);
+        return pacienteRepository.findAllByAtivoTrue(pageable).map(DadosListagemPaciente :: new);
     }
 
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizarPaciente dadosAtualizarPaciente){
+        var paciente = pacienteRepository.getReferenceById(dadosAtualizarPaciente.id());
+        paciente.atualizarPaciente(dadosAtualizarPaciente);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void delete(@PathVariable Long id ){
+        var paciente = pacienteRepository.getReferenceById(id);
+        paciente.excluir();
+        //pacienteRepository.deleteById(id);
+    }
 }
