@@ -1,9 +1,6 @@
 package com.api.study.controller;
 
-import com.api.study.medico.DadosCadastroMedico;
-import com.api.study.medico.DadosListagemMedico;
-import com.api.study.medico.Medico;
-import com.api.study.medico.MedicoRepository;
+import com.api.study.medico.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +27,19 @@ public class MedicoController {
     @GetMapping
     public Page<DadosListagemMedico> listar(@PageableDefault(size = 10, sort = "nome") Pageable pageable){
         return medicoRepository.findAll(pageable).map(DadosListagemMedico::new);
+    }
+
+
+    @PutMapping
+    @Transactional
+    public void atualizar(@RequestBody @Valid DadosAtualizarMedico dadosAtualizarMedico){
+       var medico = medicoRepository.getReferenceById(dadosAtualizarMedico.id());
+       medico.atualizarMedico(dadosAtualizarMedico);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void deletar(@PathVariable Long id){
+        medicoRepository.deleteById(id);
     }
 }

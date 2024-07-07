@@ -5,6 +5,7 @@ import com.api.study.paciente.DadosListagemPaciente;
 import com.api.study.paciente.Paciente;
 import com.api.study.paciente.PacienteRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -19,7 +20,7 @@ public class PacienteController {
 
     @PostMapping
     @Transactional
-    public void cadastrar(@RequestBody DadosCadastroPaciente dadosPaciente){
+    public void cadastrar(@RequestBody @Valid DadosCadastroPaciente dadosPaciente){
         pacienteRepository.save(new Paciente(dadosPaciente));
     }
 
@@ -27,4 +28,5 @@ public class PacienteController {
     public Page<DadosListagemPaciente> findAll(@PageableDefault(size = 10, sort = "nome") Pageable pageable){
         return pacienteRepository.findAll(pageable).map(DadosListagemPaciente :: new);
     }
+
 }
