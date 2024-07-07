@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Table(name="tb_medico")
+@Table(name="medicos")
 @Entity(name="Medico")
 @Getter
 @AllArgsConstructor
@@ -26,4 +26,13 @@ public class Medico {
 
     @Embedded
     private Endereco endereco;
+
+    public Medico(DadosCadastroMedico dadosMedico) {
+        this.nome= dadosMedico.nome();
+        this.email= dadosMedico.email();
+        this.telefone= dadosMedico.telefone();
+        this.crm= dadosMedico.crm();
+        this.especialidade=dadosMedico.especialidade();
+        this.endereco= new Endereco(dadosMedico.endereco());
+    }
 }
