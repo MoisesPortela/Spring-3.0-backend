@@ -1,4 +1,4 @@
-package com.api.study.paciente;
+package com.api.study.domain.paciente;
 
 public record DadosListagemPaciente( Long id,String nome, String email, String cpf, String telefone) {
 

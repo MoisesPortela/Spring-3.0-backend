@@ -1,6 +1,6 @@
-package com.api.study.medico;
+package com.api.study.domain.medico;
 
-import com.api.study.endereco.DadosCadastroEndereco;
+import com.api.study.domain.endereco.DadosCadastroEndereco;
 import jakarta.validation.constraints.NotNull;
 
 public record DadosAtualizarMedico(
