@@ -1,6 +1,6 @@
 package com.api.study.controller;
 
-import com.api.study.medico.*;
+import com.api.study.domain.medico.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
