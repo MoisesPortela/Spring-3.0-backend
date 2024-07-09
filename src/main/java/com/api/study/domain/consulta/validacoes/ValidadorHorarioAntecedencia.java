@@ -6,13 +6,12 @@ import org.springframework.stereotype.Component;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Component
 public class ValidadorHorarioAntecedencia implements ValidarAgendamentoConsulta{
 
     public void validar(DadosAgendarConsulta dadosAgendarConsulta){
-        var agora = LocalTime.now();
+        var agora = LocalDateTime.now();
         var horarioConsulta = dadosAgendarConsulta.data();
         var diferencaEmMinutos = Duration.between(agora,horarioConsulta).toMinutes();
         if (diferencaEmMinutos<30){
