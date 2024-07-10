@@ -25,7 +25,8 @@ public class SecurityConfigurations {
         return http.csrf(csrf -> csrf.disable())
                 .sessionManagement(sm -> sm.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(req -> {
-                    req.requestMatchers("/login").permitAll();
+                    req.requestMatchers(HttpMethod.POST,"/login").permitAll();
+                    req.requestMatchers("/v3/api-docs/**","/swagger-ui.html","/swagger-ui/**").permitAll();
                     // para indicar qual Role tem poder, vem o metodo, dps o path, dps a Role
                     //req.requestMatchers(HttpMethod.DELETE,"/medicos").hasRole("ADMIN");
                     req.anyRequest().authenticated();
