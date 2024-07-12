@@ -28,7 +28,7 @@ This project is a medical consultation system developed with Spring Boot 3.0, ut
 
 1. **Clone the repository:**
 
-git clone https://github.com/your-username/consultation-system-backend.git
+- git clone https://github.com/your-username/consultation-system-backend.git
 
 
 2. **Configure database properties:**
@@ -38,7 +38,7 @@ git clone https://github.com/your-username/consultation-system-backend.git
 
 3. **Compile and run the project:**
 
-mvn spring-boot
+- mvn spring-boot
 
 
 4. **Access the API documentation:**
