@@ -44,7 +44,7 @@ public class Medico {
             this.nome= dadosAtualizarMedico.nome();
         }
         if(dadosAtualizarMedico.telefone()!=null){
-            this.nome= dadosAtualizarMedico.telefone();
+            this.telefone= dadosAtualizarMedico.telefone();
         }
         if(dadosAtualizarMedico.endereco()!=null){
             this.endereco.atualizarEndereco(dadosAtualizarMedico.endereco());
